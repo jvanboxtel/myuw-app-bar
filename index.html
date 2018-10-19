@@ -1,5 +1,7 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <style>
             body {
                 padding: 0;
@@ -26,8 +28,7 @@
         <script nomodule scr="https://unpkg.com/@myuw-web-components/myuw-search@^1"></script>
 
         <!-- App styles component -->
-        <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1?module"></script>
-        <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1"></script>
+        <script src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1"></script>
     </head>
     <body>
         <!-- Styles for demo purposes only -->
@@ -128,8 +129,8 @@
         <myuw-app-bar
             role="toolbar"
             theme-name="MyUW"
-            theme-url="https://my.wisc.edu"
-            app-name="Bucky Backup">
+            app-name="Bucky Backup"
+            app-url="https://my.wisc.edu">
             <myuw-drawer slot="myuw-navigation"></myuw-drawer>
             <myuw-search slot="myuw-search"
                 input-label="Search components"
@@ -146,7 +147,13 @@
                     <i class="material-icons">notifications</i>
                 </button>
             </span>
-            <myuw-profile slot="myuw-profile" session-endpoint="no-session.json"></myuw-profile>
+            <myuw-profile
+                slot="myuw-profile"
+                session-endpoint="./src/session.json"
+                login-url="login.wisc.edu"
+                logout-url="logout.wisc.edu">
+                <a href="#" slot="nav-item">Test link</a>
+            </myuw-profile>
         </myuw-app-bar>
 
         <div class="demo__container">
@@ -167,12 +174,18 @@
                 </div>
                 <div class="demo__grid-box">
                     <form name="testBackgroundChange">
+                        <label for="newUrl">Update title url:</label>
+                        <input id="newUrl" type="text" placeholder="www.google.com"/>
+                        <button onclick="testUpdate(event, 'app-url',  newUrl.value)">Update</button>
+                    </form>
+                </div>
+                <div class="demo__grid-box">
+                    <form name="testBackgroundChange">
                         <label for="newBackground">Update background color:</label>
                         <input id="newBackground" type="text" placeholder="rgb(33,150,243)"/>
                         <button onclick="testAddCss(event, 'myuw-app-bar-bg',  newBackground.value)">Update</button>
                     </form>
                 </div>
-                <div class="demo__grid-box">Box 4</div>
                 <div class="demo__grid-box">Box 5</div>
                 <div class="demo__grid-box">Box 6</div>
             </div>
